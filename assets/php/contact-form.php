@@ -1,19 +1,12 @@
-<?php
+<?php 
+if(isset($_POST['submit'])){
+    $to = "anayeli.malvaez@gmail.com";
+    $from = $_POST['email']; // this is the sender's Email address
+    $first_name = $_POST['name'];
+    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
 
-	$name = trim($_POST['name']);
-	$email = trim($_POST['email']);
-	$message = trim($_POST['message']);
-	
-	$emailTo = 'anayeli.malvaez@gmail.com'; 
-	if (empty($subject)) {
-	    $subject = 'Message from your website.';
-	}
-	$body = "Name: $name \n\nEmail: $email \n\nMessage:\n$message";
-	$headers = 'From: '.$email."\r\n" .
-        'Reply-To: '.$email."\r\n";
-
-	mail($emailTo, $subject, $body, $headers);
-	$emailSent = true;
-	echo ('SEND');
-	
+    $headers = "From:" . $from;
+    mail($to,$subject,$message,$headers);
+    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+    }
 ?>
